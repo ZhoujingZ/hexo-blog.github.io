@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="周晶的技术博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="BER编码对象​    最近接触了ISO 8823协议，该协议是采用的ASN.1（抽象语法标记语言）描述的，在实际编码中采用的就是BER编码方式。ISO 8823有一种为User-data，在ASN.1中结构如下所示： 1234567891011121314151617181920212223242526272829User-data ::= CHOICE &amp;#123;  simply-encod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解码以BER(Basic Encoding Rules)方式编码的对象">
+<meta property="og:url" content="http://yoursite.com/2019/11/27/ber-describe/index.html">
 <meta property="og:site_name" content="周晶的技术博客">
+<meta property="og:description" content="BER编码对象​    最近接触了ISO 8823协议，该协议是采用的ASN.1（抽象语法标记语言）描述的，在实际编码中采用的就是BER编码方式。ISO 8823有一种为User-data，在ASN.1中结构如下所示： 1234567891011121314151617181920212223242526272829User-data ::= CHOICE &amp;#123;  simply-encod">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-11-27T15:28:15.244Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="周晶的技术博客">
+<meta name="twitter:title" content="解码以BER(Basic Encoding Rules)方式编码的对象">
+<meta name="twitter:description" content="BER编码对象​    最近接触了ISO 8823协议，该协议是采用的ASN.1（抽象语法标记语言）描述的，在实际编码中采用的就是BER编码方式。ISO 8823有一种为User-data，在ASN.1中结构如下所示： 1234567891011121314151617181920212223242526272829User-data ::= CHOICE &amp;#123;  simply-encod">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/11/27/ber-describe/">
 
 
 
 
 
-  <title>周晶的技术博客</title>
+  <title>解码以BER(Basic Encoding Rules)方式编码的对象 | 周晶的技术博客</title>
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -234,9 +237,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -266,9 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/27/ber-describe/" itemprop="url">解码以BER(Basic Encoding Rules)方式编码的对象</a></h1>
+          <h1 class="post-title" itemprop="name headline">解码以BER(Basic Encoding Rules)方式编码的对象</h1>
         
 
         <div class="post-meta">
@@ -328,9 +329,7 @@
       
 
       
-        
-          
-            <h2 id="BER编码对象"><a href="#BER编码对象" class="headerlink" title="BER编码对象"></a>BER编码对象</h2><p>​    最近接触了ISO 8823协议，该协议是采用的ASN.1（抽象语法标记语言）描述的，在实际编码中采用的就是BER编码方式。ISO 8823有一种为User-data，在ASN.1中结构如下所示：</p>
+        <h2 id="BER编码对象"><a href="#BER编码对象" class="headerlink" title="BER编码对象"></a>BER编码对象</h2><p>​    最近接触了ISO 8823协议，该协议是采用的ASN.1（抽象语法标记语言）描述的，在实际编码中采用的就是BER编码方式。ISO 8823有一种为User-data，在ASN.1中结构如下所示：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">User-data ::= CHOICE &#123;</span><br><span class="line">  simply-encoded-data  [APPLICATION 0] IMPLICIT Simply-encoded-data,</span><br><span class="line">  fully-encoded-data   [APPLICATION 1] IMPLICIT Fully-encoded-data,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">--  Subclause 8.4 defines when each of the two alternatives shall be used.</span><br><span class="line">Simply-encoded-data ::= OCTET STRING</span><br><span class="line"></span><br><span class="line">--  See 8.4.1.</span><br><span class="line">Fully-encoded-data ::= SEQUENCE SIZE (1, ..., 2..MAX) OF PDV-list</span><br><span class="line"></span><br><span class="line">--  contains one or more PDV-list values.</span><br><span class="line">--  See 8.4.2.</span><br><span class="line">PDV-list ::= SEQUENCE &#123;</span><br><span class="line">  transfer-syntax-name             Transfer-syntax-name OPTIONAL,</span><br><span class="line">  presentation-context-identifier  Presentation-context-identifier,</span><br><span class="line">  presentation-data-values</span><br><span class="line">    CHOICE &#123;single-ASN1-type</span><br><span class="line">              [0]  ABSTRACT-SYNTAX.&amp;Type</span><br><span class="line">                     (CONSTRAINED BY &#123;</span><br><span class="line">                        </span><br><span class="line">                        --  Type corresponding to presentation context identifier -- &#125;),</span><br><span class="line">            octet-aligned     [1] IMPLICIT OCTET STRING,</span><br><span class="line">            arbitrary         [2] IMPLICIT BIT STRING&#125;</span><br><span class="line">  --  Contains one or more presentation data values from the same</span><br><span class="line">  --  presentation context.</span><br><span class="line">  --  See 8.4.2.</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>​    实际编码中，每个大括号中所包含的内容{}表示一个对象，从第一行看，User-data中可以从fully-encoded和simply-encoded中任选一个包含。若选择了fully-encoded，那么包含的是一个SEQUENCE对象。SEQUENCE对象中还包含CHOICE，CONSTRANED BY对象，为了解码每个对象，需要先了解编码过程中的对象是什么。</p>
 <p>​    BER编码的对象是TLV格式，即一个对象由type-length-value三个部分组成，其中type标志了对象的class，tag和structed三个值。</p>
@@ -386,8 +385,6 @@
 <p>​    第一个字节为30，转换为二进制为 <code>0011 0000</code>,最前面两个bit位是00，所以class=0（Universal）。第三个bit位是1，所以这是个<strong>structed</strong>，最后五位是<code>10000</code>，五个位置不全是1，所以tag=16（10进制）。下一个字节为<code>80</code>,则长度未知且内容由下一个字节开始，直到两个0x00结束，所以value内容为:<code>04 03 56 78 90</code>，结束符为两个00，value的长度为5.。</p>
 <p>参考链接[<a href="https://blog.engelke.com/2014/10/17/parsing-ber-and-der-encoded-asn-1-objects/]" target="_blank" rel="noopener">https://blog.engelke.com/2014/10/17/parsing-ber-and-der-encoded-asn-1-objects/]</a></p>
 
-          
-        
       
     </div>
     
@@ -404,148 +401,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/29/suricata-source_1/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhou jing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="周晶的技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/29/suricata-source_1/" itemprop="url">suricata源码分析（1）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-29T10:53:23+08:00">
-                2019-10-29
-              </time>
+              <a href="/2019/10/29/suricata-source_1/" rel="next" title="suricata源码分析（1）">
+                <i class="fa fa-chevron-left"></i> suricata源码分析（1）
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/10/29/suricata-source_1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/29/suricata-source_1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="本文解决的问题"><a href="#本文解决的问题" class="headerlink" title="本文解决的问题"></a>本文解决的问题</h2><ol>
-<li>autofpIDS模式下的各个线程</li>
-<li>TCP应用层协议的数据包对象——packet的从生到死</li>
-<li>packet从生到死的过程中经历的新增对象的从生到死，包括：flow-数据流，transaction-交互流， detection-监测对象， log-日志对象。</li>
-<li>如何新增一个tcp层的app layer protocol</li>
-</ol>
-<h2 id="autofp的IDS状态下启动的各个线程"><a href="#autofp的IDS状态下启动的各个线程" class="headerlink" title="autofp的IDS状态下启动的各个线程"></a>autofp的IDS状态下启动的各个线程</h2><p>  aufofp是suricata在IDS状态下的一种运行方式，多个线程协同运行，完成抓包、解析、分流、监测、日志的所有功能点。<br>  autofp模式下，总共启动的线程数</p>
-<h2 id="tcp-packet的从生到死"><a href="#tcp-packet的从生到死" class="headerlink" title="tcp packet的从生到死"></a>tcp packet的从生到死</h2><h2 id="log对象的从生到死"><a href="#log对象的从生到死" class="headerlink" title="log对象的从生到死"></a>log对象的从生到死</h2><h2 id="detect怎么被玩转"><a href="#detect怎么被玩转" class="headerlink" title="detect怎么被玩转"></a>detect怎么被玩转</h2><h2 id="transaction的出生与消亡"><a href="#transaction的出生与消亡" class="headerlink" title="transaction的出生与消亡"></a>transaction的出生与消亡</h2><h2 id="flow会话信息"><a href="#flow会话信息" class="headerlink" title="flow会话信息"></a>flow会话信息</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -555,148 +432,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/07/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhou jing">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="周晶的技术博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/07/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-07T17:02:00+08:00">
-                2018-11-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/11/07/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/07/hello-world/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -704,6 +444,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -724,8 +478,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -776,6 +539,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BER编码对象"><span class="nav-number">1.</span> <span class="nav-text">BER编码对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BER编码对象如何解码"><span class="nav-number">2.</span> <span class="nav-text">BER编码对象如何解码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解码通用方式"><span class="nav-number">2.1.</span> <span class="nav-text">解码通用方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解码举例"><span class="nav-number">2.2.</span> <span class="nav-text">解码举例</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -916,6 +695,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -933,6 +716,18 @@
       <script id="dsq-count-scr" src="https://https-zhoujingz-github-io.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/11/27/ber-describe/';
+          this.page.identifier = '2019/11/27/ber-describe/';
+          this.page.title = '解码以BER(Basic Encoding Rules)方式编码的对象';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-zhoujingz-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

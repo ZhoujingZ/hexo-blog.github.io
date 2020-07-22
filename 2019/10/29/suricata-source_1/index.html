@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="suricata,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="本文解决的问题 autofpIDS模式下的各个线程 TCP应用层协议的数据包对象——packet的从生到死 packet从生到死的过程中经历的新增对象的从生到死，包括：flow-数据流，transaction-交互流， detection-监测对象， log-日志对象。 如何新增一个tcp层的app layer protocol  autofp的IDS状态下启动的各个线程  aufofp是suri">
+<meta name="keywords" content="suricata">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/11/07/hello-world/index.html">
+<meta property="og:title" content="suricata源码分析（1）">
+<meta property="og:url" content="http://yoursite.com/2019/10/29/suricata-source_1/index.html">
 <meta property="og:site_name" content="周晶的技术博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="本文解决的问题 autofpIDS模式下的各个线程 TCP应用层协议的数据包对象——packet的从生到死 packet从生到死的过程中经历的新增对象的从生到死，包括：flow-数据流，transaction-交互流， detection-监测对象， log-日志对象。 如何新增一个tcp层的app layer protocol  autofp的IDS状态下启动的各个线程  aufofp是suri">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-07-22T10:59:03.429Z">
+<meta property="og:updated_time" content="2020-06-03T01:49:51.819Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="suricata源码分析（1）">
+<meta name="twitter:description" content="本文解决的问题 autofpIDS模式下的各个线程 TCP应用层协议的数据包对象——packet的从生到死 packet从生到死的过程中经历的新增对象的从生到死，包括：flow-数据流，transaction-交互流， detection-监测对象， log-日志对象。 如何新增一个tcp层的app layer protocol  autofp的IDS状态下启动的各个线程  aufofp是suri">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/07/hello-world/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/29/suricata-source_1/">
 
 
 
 
 
-  <title>Hello World | 周晶的技术博客</title>
+  <title>suricata源码分析（1） | 周晶的技术博客</title>
   
 
 
@@ -252,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/07/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/29/suricata-source_1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhou jing">
@@ -269,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">suricata源码分析（1）</h1>
         
 
         <div class="post-meta">
@@ -281,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-07T17:02:00+08:00">
-                2018-11-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-29T10:53:23+08:00">
+                2019-10-29
               </time>
             
 
@@ -300,8 +301,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/07/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/07/hello-world/" itemprop="commentCount"></span>
+                <a href="/2019/10/29/suricata-source_1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/29/suricata-source_1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -329,16 +330,14 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        <h2 id="本文解决的问题"><a href="#本文解决的问题" class="headerlink" title="本文解决的问题"></a>本文解决的问题</h2><ol>
+<li>autofpIDS模式下的各个线程</li>
+<li>TCP应用层协议的数据包对象——packet的从生到死</li>
+<li>packet从生到死的过程中经历的新增对象的从生到死，包括：flow-数据流，transaction-交互流， detection-监测对象， log-日志对象。</li>
+<li>如何新增一个tcp层的app layer protocol</li>
+</ol>
+<h2 id="autofp的IDS状态下启动的各个线程"><a href="#autofp的IDS状态下启动的各个线程" class="headerlink" title="autofp的IDS状态下启动的各个线程"></a>autofp的IDS状态下启动的各个线程</h2><p>  aufofp是suricata在IDS状态下的一种运行方式，多个线程协同运行，完成抓包、解析、分流、监测、日志的所有功能点。<br>  autofp模式下，总共启动的线程数</p>
+<h2 id="tcp-packet的从生到死"><a href="#tcp-packet的从生到死" class="headerlink" title="tcp packet的从生到死"></a>tcp packet的从生到死</h2><h2 id="log对象的从生到死"><a href="#log对象的从生到死" class="headerlink" title="log对象的从生到死"></a>log对象的从生到死</h2><h2 id="detect怎么被玩转"><a href="#detect怎么被玩转" class="headerlink" title="detect怎么被玩转"></a>detect怎么被玩转</h2><h2 id="transaction的出生与消亡"><a href="#transaction的出生与消亡" class="headerlink" title="transaction的出生与消亡"></a>transaction的出生与消亡</h2><h2 id="flow会话信息"><a href="#flow会话信息" class="headerlink" title="flow会话信息"></a>flow会话信息</h2>
       
     </div>
     
@@ -353,6 +352,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/suricata/" rel="tag"># suricata</a>
+          
+        </div>
+      
 
       
       
@@ -362,14 +367,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/11/07/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/10/29/suricata-source_1/" rel="prev" title="suricata源码分析（1）">
-                suricata源码分析（1） <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/27/ber-describe/" rel="prev" title="解码以BER(Basic Encoding Rules)方式编码的对象">
+                解码以BER(Basic Encoding Rules)方式编码的对象 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -503,7 +512,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本文解决的问题"><span class="nav-number">1.</span> <span class="nav-text">本文解决的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#autofp的IDS状态下启动的各个线程"><span class="nav-number">2.</span> <span class="nav-text">autofp的IDS状态下启动的各个线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tcp-packet的从生到死"><span class="nav-number">3.</span> <span class="nav-text">tcp packet的从生到死</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#log对象的从生到死"><span class="nav-number">4.</span> <span class="nav-text">log对象的从生到死</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#detect怎么被玩转"><span class="nav-number">5.</span> <span class="nav-text">detect怎么被玩转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transaction的出生与消亡"><span class="nav-number">6.</span> <span class="nav-text">transaction的出生与消亡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flow会话信息"><span class="nav-number">7.</span> <span class="nav-text">flow会话信息</span></a></li></ol></div>
             
 
           </div>
@@ -673,9 +682,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/11/07/hello-world/';
-          this.page.identifier = '2018/11/07/hello-world/';
-          this.page.title = 'Hello World';
+          this.page.url = 'http://yoursite.com/2019/10/29/suricata-source_1/';
+          this.page.identifier = '2019/10/29/suricata-source_1/';
+          this.page.title = 'suricata源码分析（1）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://https-zhoujingz-github-io.disqus.com/embed.js';
